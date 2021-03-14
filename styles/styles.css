@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family: D-DIN;
+	src: url('/fonts/D-DIN.otf');
+}
+@font-face {
+	font-family:D-DIN-Bold;
+	src:url('../fonts/D-DIN-Bold.otf');
+}
+@font-face {
+	font-family:D-DIN-Italic;
+	src:url('../fonts/D-DIN-Italic.otf');
+}
+@font-face {
+	font-family:D-DINCondensed;
+	src:url('../fonts/D-DINCondensed.otf');
+}
+@font-face {
+	font-family:D-DINCondensed-Bold;
+	src:url('../fonts/D-DINCondensed-Bold.otf');
+}
+@font-face {
+	font-family:D-DINExp;
+	src:url('../fonts/D-DINExp.otf');
+}
+@font-face {
+	font-family:D-DINExp-Bold;
+	src:url('../fonts/D-DINExp-Bold.otf');
+}
+@font-face {
+	font-family:D-DINExp-Italic;
+	src:url('../fonts/D-DINExp-Italic.otf');
+}
+
+body {
+	font-family:D-DIN-Bold;
+	margin:0;
+	box-sizing:border-box;
+	color:white;
+	overflow:hidden;
+}
+
+.sun {
+	z-index: -1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:50%;
+	display:none;
+}
+.sun img {
+	height:50%;
+}
+.dawn{
+	transform: rotate(356.5deg);
+}
+@keyframes sundawn {
+	0% {transform:rotate(326.5deg);}
+	100% {transform:rotate(356.5deg);}
+}
+
+
+@keyframes night-dawn {
+	0%  {background:#000139;}
+	50% {background:#004BFF;}
+	100%{ background:#0794FA;}
+}
+@keyframes dawn-night {
+	0% {background:#0794FA;}
+	50% {background:#004BFF;}
+	100% {background:#000139;}
+}
+
+@keyframes sunset-night {
+	0% {background:#0794FA;}
+	50% {background:#D01800;}
+	100% {background:#000139;} 
+}
+@keyframes night-sunset {
+	0% {background:#000139;}
+	50% {background:#D01800;}
+	100% {background:#0794FA;}
+}
+	
+
+.logo {
+	grid-column: 2/3;
+	
+	/*display:block;
+	text-align: center;
+	/*margin-top:2%;
+	margin-left:44%;*/
+	width:75%;
+	margin:2% 0 2% 10%;
+}
+.responsiveGrid{
+	display:grid;
+	grid-template-columns: 33.33% 33.33% ;
+	grid-row-gap: 20px;
+	
+}
+
+span {
+	display:block;
+	text-align: center;
+	width:100%;
+	padding-top:6%;
+}
+.container {
+	grid-column: 2/3;
+	height:100px;
+	font-size:3em;
+	background-color:Black;
+	border:solid thick white;
+	width:500px;
+	padding:10px;
+}
+.options {
+	grid-column: 2/3;
+	width:100%;
+}
+button{
+	background-color:black;
+	border: solid thick white;
+	color:white;
+	margin-right:19px;
+}
+
+h1 {
+	text-align:center;
+}
+
+main {
+	z-index:1;
+}
