@@ -49,38 +49,27 @@ body {
     top:50%;
 	display:none;
 }
-.sun img {
-	height:50%;
-}
-.dawn{
-	transform: rotate(356.5deg);
-}
-@keyframes sundawn {
-	0% {transform:rotate(326.5deg);}
-	100% {transform:rotate(356.5deg);}
-}
 
-
-@keyframes night-dawn {
-	0%  {background:#000139;}
-	50% {background:#004BFF;}
-	100%{ background:#0794FA;}
-}
 @keyframes dawn-night {
-	0% {background:#0794FA;}
-	50% {background:#004BFF;}
+	0% {background:#004BFF;}
 	100% {background:#000139;}
 }
-
+@keyframes dawn-day {
+	0%		{background:#004BFF;}
+	100%	{background:#0794FA;}
+}
 @keyframes sunset-night {
-	0% {background:#0794FA;}
-	50% {background:#D01800;}
+	0% {background:#D01800;}
 	100% {background:#000139;} 
 }
-@keyframes night-sunset {
-	0% {background:#000139;}
-	50% {background:#D01800;}
-	100% {background:#0794FA;}
+@keyframes sunset-day {
+	0%		{background:#D01800;}
+	100%	{background:#0794FA;}
+}
+@keyframes day-night {
+	0%		{background:#0794FA;}
+	50%		{background:#004BFF;}
+	100%	{background:#000139;}
 }
 	
 

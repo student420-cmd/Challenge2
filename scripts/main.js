@@ -4,11 +4,8 @@ var currentHours;
 var currentMinutes;
 var currentSeconds;
 var currentTimeString;
-var a;
-var sun = document.getElementById('sun');
-var html = document.getElementById("html"); 
-var time;
-var b;
+var body = document.getElementById("body"); 
+
 
 function stopClock()
 	{
@@ -17,77 +14,116 @@ function stopClock()
 
 function timeTravel(time)
 	{
-		html = document.getElementById("html"); 
-		time;
-		updateClock(1);
+		body = document.getElementById("body"); 
 		stopClock();
 		if ( time == 'dawn')
 			{
-				if ( b == 2 || b == 3 && currentHours <= 5 || currentHours >= 19)
+				// Day
+				if ( currentHours > 8 && currentHours < 17)
 					{
-						html.style.animation="night-dawn 5s";
-						html.style.backgroundColor="#0794FA";
-						setTimeout(function(){html.style.animation="";},5000);
+						body.style.animation="dawn-day 1s reverse";
+				}
+				// Sunset
+				else if ( currentHours > 16 && currentHours < 20 )
+					{
+						body.style.animation="sunset-night 0.5s";
+						setTimeout(function(){body.style.animation="dawn-night 0.5s reverse";},500);
 					}
-				document.getElementById("clock").firstChild.nodeValue = "8:00:00";
-				
-				b = 0;
+				// Night
+				else if ( currentHours > 19 &&  currentHours < 24 || currentHours < 5)
+					{
+						body.style.animation="dawn-night 1s reverse";	
+					}
+				currentHours = 6;
+				currentMinutes = 0;
+				currentSeconds = 0;
+				setTimeout(function(){body.style.animation="";},1000);
+				document.getElementById("clock").firstChild.nodeValue = "06:00:00";
+				body.style.background="#004BFF";
 			}
 		else if ( time == 'noon' )
 			{
-				if (b == 2 || b == 3 && currentHours <= 8 || currentHours >= 17)
+				// Dawn
+				if ( currentHours > 4 && currentHours < 8 )
 					{
-						html.style.animation="night-dawn 5s";
-						html.style.backgroundColor="#0794FA";
-						setTimeout(function(){html.style.animation="";},5000);
+						body.style.animation="dawn-day 1s";
 					}
+				// Sunset
+				else if ( currentHours > 16 && currentHours < 20)
+					{
+						body.style.animation="sunset-day 1s";
+					}
+				// Night
+				else if ( currentHours > 19 &&  currentHours < 24 || currentHours < 5)
+					{
+						body.style.animation="day-night 1s reverse";
+					}
+				currentHours = 12;
+				currentMinutes = 0;
+				currentSeconds = 0;
+				body.style.backgroundColor="#0794FA";
+				setTimeout(function(){body.style.animation="";},1000);
 				document.getElementById("clock").firstChild.nodeValue = "12:00:00";
-				b = 1;
 			}
 		else if ( time == 'sunset')
 			{
-				if (b == 0 || b == 1 && currentHours >= 8 && currentHours <= 17)
+				// Dawn
+				if ( currentHours > 4 && currentHours < 8 )
 					{
-						html.style.animation="night-sunset 5s";
-						html.style.backgroundColor="#0794FA";
-						setTimeout(function(){html.style.animation="";},5000);
+						body.style.animation="dawn-day 0.5s";
+						setTimeout(function(){body.style.animation="sunset-day 0.5s reverse";},500);
 					}
-				else {
-					html.style.animation="sunset-night 5s";
-					html.style.background="#000139";
-					setTimeout(function(){html.style.animation="";},5000);
-				}
-				document.getElementById("clock").firstChild.nodeValue = "17:00:00";
-				b = 2;
+				// Day
+				else if ( currentHours > 7 && currentHours < 17 ) 
+					{
+                        body.style.animation="sunset-day 1s reverse";
+					}
+				// Night
+				else if ( currentHours > 19 && currentHours < 24 || currentHours < 5 )
+					{
+						body.style.animation="sunset-night 1s reverse";
+					}
+				currentHours = 18;
+				currentMinutes = 0;
+				currentSeconds = 0;
+				body.style.background="#D01800";
+				setTimeout(function(){body.style.animation="";},1000);
+				document.getElementById("clock").firstChild.nodeValue = "18:00:00";				
 			}
 		else if ( time == 'midnight')
 			{
-				if (b == 0 || b == 1 && currentHours >= 8 || currentHours <= 17) 
+				// Dawn
+				if ( currentHours > 4 && currentHours < 8 ) 
 					{
-						html.style.animation="dawn-night 5s";
-						html.style.animation="#0001398";
-						setTimeout(function(){html.style.animation="";},5000);
+						body.style.animation="dawn-night 1s";
 					}
+				// Day
+				else if ( currentHours > 7 && currentHours < 17 )
+					{
+						body.style.animation="sunset-day 0.5s reverse";
+						setTimeout(function(){body.style.animation="sunset-night 0.5s";},500);
+					}
+				// Sunset
+				else if ( currentHours > 16 && currentHours < 20 )
+					{
+						body.style.animation="sunset-night 1s";
+					}
+				currentHours = 0;
+				currentMinutes = 0;
+				currentSeconds = 0;
+				body.style.background="#000139";
+				setTimeout(function(){body.style.animation="";},1000);
 				document.getElementById("clock").firstChild.nodeValue = "00:00:00";
-				b = 3;
 			}
 	}
 
 function resetClock()
 	{	
-		currentHours;
+		updateClock();
 		clock = setInterval(updateClock, 1000);
-		if (b == 0 || b == 1 && currentHours >=8 || currentHours <=17)
-		{	
-            html.style.animation="sunset-night 5s";
-		} 
-		else if (b == 2 || b == 3 && currentHours <=8 || currentHours >=17 ) {
-			html.style.animation="night-sunset 5s";
-		}
-		updateClock(0);
 	}
 
-function updateClock (a)
+function updateClock ()
 {
   var currentTime = new Date ();
 
@@ -96,46 +132,56 @@ function updateClock (a)
   ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   
 
-  currentHours = currentTime.getHours ( );
+  currentHours =  currentTime.getHours ( );
   currentMinutes = currentTime.getMinutes ( );
   currentSeconds = currentTime.getSeconds ( );
- 
-  var hoursDeg =  (currentHours * (360/24))-105.5;
-  var minutesDeg = currentMinutes * 0.25;
-  var secondsDeg = currentSeconds * ( 360/86400 );
-  var totalDeg = hoursDeg + minutesDeg + secondsDeg ;
 
-  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-  
+	// -------------------------------------------------- Dit voegt een nul voor alle minuten en secondes in de klok, dat ziet er dan zo uit: 17:09:08. Ipv 17:9:8.
+  if ( currentMinutes < 10 )
+    { 
+		currentMinutes = "0" + currentMinutes;
+	}
+  else 
+  {
+     currentMinutes = "" + currentMinutes;
+  }
+  if ( currentSeconds < 10 )
+  { currentSeconds = "0" + currentSeconds;
+  }
+	else {
+		currentSeconds = "" + currentSeconds;
+	}
+  // -------------------------------------------------- Hier worden de gegevens in de klok gezet op de body.
   currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
-  var currentDay = days[currentTime.getDay()];
   var currentDate = days[currentTime.getDay()] + " " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear() ;
   document.getElementById("clock").firstChild.nodeValue = currentTimeString;
   document.getElementById("date").firstChild.nodeValue = currentDate;
+
+	// -------------------------------------------------- Gebaseerd op de tijd van de dag, verandert het achtergrond automatisch.
 	
+  body = document.getElementById("body");
+	// Dawn
+	if ( currentHours > 4 && currentHours < 8)
+		{
+			body.style.background="#004BFF";
+		}
+	// Day
+	else if (currentHours > 7 && currentHours < 17)
+		{
+			body.style.background="#0794FA";
+		}
+	// Sunset
+	else if ( currentHours > 16 && currentHours < 20 )
+		{
+			body.style.background="#D01800";
+		}
+	// Night
+	else if ( currentHours > 19 && currentHours < 24 || currentHours < 5 )
+		{
+			body.style.background="#000139";
+		}
 
-
-	
-  var sun = document.getElementById('sun');
-  sun.style.transform = "rotate(" + totalDeg + "deg)";
-  var html = document.getElementById("html");
-
-	if ( totalDeg == 146.5 && a == 0 ){
-		html.style.animation= "sunset 7200s" ;
 	}
-	else if ( totalDeg == 326.5 && a == 0){
-		html.style.animation="dawn 7200s";
-	}
-	else if ( totalDeg > 176.5 && totalDeg < 356.5 && a == 0)  {
-		html.style.backgroundColor="#000139";
-	}
-	else if ( totalDeg < 176.5 && totalDeg > 365.5 && a == 0){
-		html.style.backgroundColor="#0794FA";
-	}
-	
-
-}
 
 
 
