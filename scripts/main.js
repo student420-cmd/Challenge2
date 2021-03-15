@@ -7,12 +7,12 @@ var currentTimeString;
 var currentTimezone;
 var body = document.getElementById("body"); 
 
-
+// -------------------------------------------------- Een functie die klok op stil zet.
 function stopClock()
 	{
 		clearInterval(clock);
 	}
-
+// -------------------------------------------------- Deze functie  geeft de gebruiker de optie om te 'tijdreizen'. Eerst wordt er gekeken naar het huidige uur, om zo de goeie transitie af te laten spelen.
 function timeTravel(time)
 	{
 		body = document.getElementById("body"); 
@@ -117,13 +117,13 @@ function timeTravel(time)
 				document.getElementById("clock").firstChild.nodeValue = "00:00:00";
 			}
 	}
-
+// -------------------------------------------------- Deze functie reset de klok weer zoals hij was.
 function resetClock()
 	{	
 		updateClock();
 		clock = setInterval(updateClock, 1000);
 	}
-
+// -------------------------------------------------- Deze functie is het hartje van de klok.
 function updateClock ()
 {
   var currentTime = new Date ();
