@@ -10,32 +10,15 @@
 <body onload="resetClock()" id="body">
 	<main>
 		<div id="grid" class="responsiveGrid">
-			<div class="logo">
-				<img src="images/SpaceX-Logo.svg" alt="Logo van SpaceX"/>
-			</div>
-			<div class="container">
-				<span id="clock">&nbsp;</span>
-			</div>
-			<div class="container">
-				<span id="date">&nbsp;</span>
-			</div>
-			<div class="options">
-				<button onclick="timeTravel('dawn')"><h1>Dawn</h1></button><button onclick="timeTravel('noon')"><h1>Day</h1></button>
-				<button onclick="timeTravel('sunset')"><h1>Sunset</h1></button>
-				<button onclick="timeTravel('midnight')"><h1>Night</h1></button>
-				<button onclick="resetClock()"><h1>Reset</h1></button>
-			</div>
-
-		<div class="sun" id="sun">
-		<img src="images/sun.png" alt="Picture of the sun"/>
+			<div class="logo"><img src="images/SpaceX-Logo.svg" alt="Logo van SpaceX"/></div>
+			<div class="container" id="klok"><span id="clock">&nbsp;</span></div>
+			<div class="container" id="datum"><span id="date">&nbsp;</span></div>
+			<div class="container" id="dawn"><button onclick="timeTravel('dawn')"><h1>Dawn</h1></button></div>
+			<div class="container" id="noon"><button onclick="timeTravel('noon')"><h1>Day</h1></button></div>
+			<div class="container" id="sunset"><button onclick="timeTravel('sunset')"><h1>Sunset</h1></button></div>
+			<div class="container" id="midnight"><button onclick="timeTravel('midnight')"><h1>Night</h1></button></div>
+			<div class="container" id="reset"><button onclick="resetClock()"><h1>Reset</h1></button></div>
 		</div>
-	</div>
-	
-
-
-
-
-
 	</main>
 </body>
 </html>

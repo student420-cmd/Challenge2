@@ -4,6 +4,7 @@ var currentHours;
 var currentMinutes;
 var currentSeconds;
 var currentTimeString;
+var currentTimezone;
 var body = document.getElementById("body"); 
 
 
@@ -131,7 +132,8 @@ function updateClock ()
   var days =
   ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   
-
+  var timezones = ["UTC","GMT+1","GMT+2","GMT+3","GMT+4","GMT+5","GMT+6","GMT+7","GMT+8","GMT+9","GMT+10","GMT+11","GMT+12",]
+  currentTimezone = timezones[(currentTime.getTimezoneOffset()/-60)];
   currentHours =  currentTime.getHours ( );
   currentMinutes = currentTime.getMinutes ( );
   currentSeconds = currentTime.getSeconds ( );
@@ -152,7 +154,7 @@ function updateClock ()
 		currentSeconds = "" + currentSeconds;
 	}
   // -------------------------------------------------- Hier worden de gegevens in de klok gezet op de body.
-  currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+  currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + currentTimezone;
   var currentDate = days[currentTime.getDay()] + " " + currentTime.getDate() + " " + months[currentTime.getMonth()] + " " + currentTime.getFullYear() ;
   document.getElementById("clock").firstChild.nodeValue = currentTimeString;
   document.getElementById("date").firstChild.nodeValue = currentDate;
@@ -176,7 +178,7 @@ function updateClock ()
 			body.style.background="#D01800";
 		}
 	// Night
-	else if ( currentHours > 19 && currentHours < 24 || currentHours < 5 )
+	else //if ( currentHours > 19 && currentHours < 24 || currentHours < 5 )
 		{
 			body.style.background="#000139";
 		}
